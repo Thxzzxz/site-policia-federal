@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PFBR - Polícia Federal do Brasil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #dc2626;
+            --primary-red-dark: #b91c1c;
+            --primary-red-light: #ef4444;
+            --accent-gold: #f59e0b;
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: rgba(17, 17, 17, 0.8);
+            --text-primary: #ffffff;
+            --text-secondary: #d1d5db;
+            --text-muted: #9ca3af;
+            --border-color: rgba(220, 38, 38, 0.2);
+            --shadow-primary: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            --shadow-red: 0 8px 20px rgba(220, 38, 38, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .background-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(220, 38, 38, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(220, 38, 38, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(245, 158, 11, 0.03) 0%, transparent 30%);
+            z-index: -1;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 20px 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow-primary);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .logo {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(220, 38, 38, 0.4);
+            box-shadow: 
+                0 0 30px rgba(220, 38, 38, 0.3),
+                inset 0 2px 4px rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            animation: logoShine 4s infinite;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            z-index: 1;
+            letter-spacing: 1px;
+        }
+
+        @keyframes logoShine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .main-title {
+            text-align: center;
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin: 20px 0;
+            background: linear-gradient(135deg, var(--primary-red), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 16px 0;
+        }
+
+        .nav-item {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(185, 28, 28, 0.05));
+            border: 1px solid rgba(220, 38, 38, 0.2);
+            border-radius: 12px;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-item::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .nav-item:hover::before {
+            left: 100%;
+        }
+
+        .nav-item:hover {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.2), rgba(185, 28, 28, 0.15));
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-red);
+            border-color: rgba(220, 38, 38, 0.4);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 320px 24px 60px;
+        }
+
+        .section {
+            margin-bottom: 80px;
+            display: none;
+            animation: sectionFadeIn 0.6s ease-out;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes sectionFadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 48px;
+    padding-top: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    color: var(--primary-red);
+    line-height: 3; 
+}
+
+.section-title::after {
+    content: "";
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-red), var(--accent-gold));
+    border-radius: 2px;
+}
+
+        .welcome-section {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .welcome-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 32px;
+            background: linear-gradient(135deg, var(--primary-red), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .welcome-description {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+            font-weight: 400;
+            text-align: justify;
+        }
+
+        .specialization-info {
+            background: linear-gradient(135deg, var(--bg-card), rgba(220, 38, 38, 0.05));
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 48px 0;
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: flex-start;
+            gap: 32px;
+            box-shadow: var(--shadow-primary);
+            transition: all 0.3s ease;
+        }
+
+        .specialization-info:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .spec-logo {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(220, 38, 38, 0.3);
+            flex-shrink: 0;
+            box-shadow: var(--shadow-red);
+        }
+
+        .spec-content {
+            flex: 1;
+        }
+
+        .spec-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--primary-red);
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .spec-description {
+            line-height: 1.7;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        .codes-table {
+            background: linear-gradient(135deg, var(--bg-card), rgba(220, 38, 38, 0.03));
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-primary);
+        }
+
+        .table-header {
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
+            padding: 24px;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(220, 38, 38, 0.1);
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: rgba(220, 38, 38, 0.1);
+            font-weight: 600;
+            color: var(--primary-red);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+        }
+
+        tr:hover {
+            background: rgba(220, 38, 38, 0.05);
+        }
+
+        .courses-intro {
+            text-align: center;
+            margin-bottom: 48px;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--bg-card), rgba(220, 38, 38, 0.05));
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-primary);
+        }
+
+        .courses-intro h3 {
+            font-size: 1.75rem;
+            color: var(--primary-red);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .courses-intro p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .course-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            gap: 16px;
+        }
+
+        .tab-button {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(185, 28, 28, 0.05));
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 14px 24px;
+            color: var(--text-primary);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            font-size: 0.95rem;
+        }
+
+        .tab-button:hover,
+        .tab-button.active {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.2), rgba(185, 28, 28, 0.15));
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-red);
+            border-color: rgba(220, 38, 38, 0.4);
+        }
+
+        .course-tab-content {
+            margin-bottom: 40px;
+        }
+
+        .course-tab {
+            display: none;
+            animation: sectionFadeIn 0.6s ease-out;
+        }
+
+        .course-tab.active {
+            display: block;
+        }
+
+        .course-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .course-card {
+            background: linear-gradient(135deg, var(--bg-card), rgba(220, 38, 38, 0.05));
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-red), var(--accent-gold));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .course-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .course-card:hover {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(185, 28, 28, 0.08));
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .course-card h4 {
+            color: var(--primary-red);
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .course-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .course-detail-content {
+            margin-top: 40px;
+        }
+
+        .course-detail-header {
+            margin-bottom: 32px;
+        }
+
+        .back-button {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.15), rgba(185, 28, 28, 0.1));
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 12px 20px;
+            color: var(--text-primary);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            border: none;
+            outline: none;
+        }
+
+        .back-button:hover {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.25), rgba(185, 28, 28, 0.2));
+            transform: translateX(-4px);
+            box-shadow: var(--shadow-red);
+        }
+
+        .course-content {
+            animation: sectionFadeIn 0.6s ease-out;
+        }
+
+        .course-content h3 {
+            font-size: 2rem;
+            color: var(--primary-red);
+            margin-bottom: 32px;
+            font-weight: 600;
+            text-align: center;
+        }
+        @media (max-width: 1024px) {
+            .container {
+                padding: 300px 20px 50px;
+            }
+            
+            .specialization-info {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 1.75rem;
+                letter-spacing: 2px;
+            }
+            
+            .welcome-title {
+                font-size: 2.25rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
+            
+            .nav-item {
+                width: 220px;
+                justify-content: center;
+            }
+            
+            .course-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .course-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab-button {
+                width: 220px;
+                text-align: center;
+            }
+            
+            .container {
+                padding: 380px 16px 40px;
+            }
+            
+            th, td {
+                padding: 12px 16px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .logo-text {
+                font-size: 18px;
+            }
+            
+            .main-title {
+                font-size: 1.5rem;
+                letter-spacing: 1px;
+            }
+            
+            .welcome-title {
+                font-size: 1.75rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                padding: 360px 12px 30px;
+            }
+            
+            .specialization-info,
+            .courses-intro {
+                padding: 24px;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-secondary: #e5e7eb;
+                --text-muted: #a1a1aa;
+            }
+        }
+        
+        /* Estilos para o sistema de tickets da corregedoria */
+.ticket-system {
+    margin-top: 40px;
+}
+
+.ticket-header {
+    text-align: center;
+    margin-bottom: 32px;
+    padding: 32px;
+    background: linear-gradient(135deg, var(--bg-card), rgba(220, 38, 38, 0.05));
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-primary);
+}
+
+.ticket-header h3 {
+    font-size: 1.75rem;
+    color: var(--primary-red);
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.ticket-header p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.ticket-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.ticket-card {
+    background: linear-gradient(135deg, var(--bg-card), rgba(220, 38, 38, 0.05));
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.ticket-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-red), var(--accent-gold));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.ticket-card:hover::before {
+    transform: scaleX(1);
+}
+
+.ticket-card:hover {
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(185, 28, 28, 0.08));
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.ticket-card h4 {
+    color: var(--primary-red);
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.ticket-card p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.discord-info {
+    background: linear-gradient(135deg, var(--bg-card), rgba(245, 158, 11, 0.05));
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-primary);
+}
+
+.discord-info h4 {
+    color: var(--accent-gold);
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.discord-info p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+    </style>
+</head>
+<body>
+    <div class="background-pattern"></div>
+    
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <div class="logo">
+                    <div class="logo-text">PF</div>
+                </div>
+            </div>
+            
+            <h1 class="main-title">Polícia Federal</h1>
+            <p class="subtitle">República Federativa do Brasil</p>
+            
+            <nav class="nav-menu">
+                <div class="nav-item" onclick="showSection('home')">🏛️ Polícia Federal</div>
+                <div class="nav-item" onclick="showSection('operacoes')">⚔️ Operações</div>
+                <div class="nav-item" onclick="showSection('cursos')">📚 Cursos</div>
+                <div class="nav-item" onclick="showSection('recrutamento')">👤 Recrutamento</div>
+                <div class="nav-item" onclick="showSection('normas')">📋 Normas Internas</div>
+                <div class="nav-item" onclick="showSection('corregedoria')">⚖️ Corregedoria</div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <section id="home" class="section active">
+            <div class="welcome-section">
+                <h2 class="welcome-title">Bem-vindo à Polícia Federal</h2>
+                <p class="welcome-description">
+                    A Polícia Federal do Brasil é uma instituição permanente, organizada e mantida pela União 
+                    e estruturada em carreira, destinada a exercer as funções de polícia judiciária da União 
+                    e apurar infrações penais contra a ordem política e social ou em detrimento de bens, 
+                    serviços e interesses da União ou de suas entidades autárquicas e empresas públicas. Atualmente, 
+                    temos como Diretor-Geral da Polícia Federal o senhor Doss, que vem desempenhando sua função 
+                    com excelência e imparcialidade. Seu trabalho tem sido amplamente reconhecido e admirado por muitos na cidade 
+                    Comando RJ.
+                </p>
+            </div>
+        </section>
+
+        <section id="operacoes" class="section">
+            <h2 class="section-title">Operações Especiais</h2>
+            <div class="specialization-info">
+                <div class="spec-logo">
+                    <div style="color: white; font-size: 1.8rem;">⚔️</div>
+                </div>
+                <div class="spec-content">
+                    <h3 class="spec-title">Divisão de Operações Especiais</h3>
+                    <p class="spec-description">
+                        A Divisão de Operações Especiais da Polícia Federal é uma unidade especializada em operações de alta complexidade, 
+                        atuando em investigações criminais, combate ao crime organizado, narcotráfico e corrupção.
+                        Todos os agentes das Divisões Especiais são altamente treinados para quaisquer tipos de situações em solo.
+                        Caso queira ter a chance de adentrar em alguma dessas divisões, seja um policial exemplar e destaque em meio aos outros.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="cursos" class="section">
+    <h2 class="section-title">Cursos</h2>
+    
+    <div class="course-tabs">
+        <div class="tab-button active" onclick="showCourseTab('basicos')">
+            📚 Cursos Básicos
+        </div>
+    </div>
+    
+    <div class="course-tab-content">
+        <div id="basicos" class="course-tab active">
+            <div class="courses-intro">
+                <h3>📚 Cursos Básicos - Formação Inicial</h3>
+                <p>
+                    Selecione um dos cursos básicos disponíveis para visualizar o conteúdo e iniciar sua formação na Polícia Federal.
+                </p>
+            </div>
+            
+            <div class="course-cards">
+                <div class="course-card" onclick="showCourseContent('modulacao')">
+                    <div class="course-icon">🎯</div>
+                    <h4>Curso Modulação</h4>
+                    <p>Modulação avançada e comunicação operacional no rádio</p>
+                </div>
+                
+                <div class="course-card" onclick="showCourseContent('acompanhamento')">
+                    <div class="course-icon">👁️</div>
+                    <h4>Curso Acompanhamento</h4>
+                    <p>Acompanhamento tático e QRR rápido</p>
+                </div>
+                
+                <div class="course-card" onclick="showCourseContent('abordagem')">
+                    <div class="course-icon">🛡️</div>
+                    <h4>Curso Abordagem</h4>
+                    <p>Abordagem e procedimentos de segurança</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="course-detail-content" id="course-details" style="display: none;">
+        <div class="course-detail-header">
+            <button class="back-button" onclick="hideCourseContent()">← Voltar aos Cursos</button>
+        </div>
+        
+        <div id="modulacao-content" class="course-content" style="display: none;">
+            <h3>🎯 Curso de Modulação</h3>
+            
+            <div class="codes-table">
+                <div class="table-header">Código 0 - Patrulhamento</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Descrição Completa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>CÓD-P 0</td><td>QAP CENTRAL, UNIDADE (seu carro) INICIANDO CÓDIGO 0, QUALQUER QRR OU QRU LANÇAR QTH NA REDE, QSL?</td></tr>
+                        <tr><td>CÓD-P 1</td><td>QAP CENTRAL, UNIDADE (seu carro) INICANDO ABORDAGEM DE CÓDIGO 1 EM UM (carro abordado), QSL?</td></tr>
+                        <tr><td>CÓD-P 2</td><td>QAP CENTRAL, UNIDADE (seu carro) INICANDO ABORDAGEM DE CÓDIGO 2 EM UM (carro abordado), o mesmo está com atitude suspeita, QSL?</td></tr>
+                        <tr><td>CÓD-P 3</td><td>QAP CENTRAL, UNIDADE (seu carro) INICANDO ABORDAGEM DE CÓDIGO 3 EM UM (carro abordado), o mesmo possivelmente está armado e com mais indivíduos no carro, solicito apoio no meu QTH, QSL?</td></tr>
+                        <tr><td>CÓD-P 6</td><td>QAP CENTRAL, UNIDADE (seu carro) INICIANDO CÓDIGO 6 NO MEU QTH, ESTAMOS OUVINDO MUITOS DISPAROS NAS PROXIMIDADES, QSL?</td></tr>
+                        <tr style="background: rgba(220, 38, 38, 0.15);"><td><strong>IMPORTANTE</strong></td><td>Sempre mantenha o QTH atualizado durante o patrulhamento</td></tr>
+                        <tr style="background: rgba(220, 38, 38, 0.15);"><td><strong>IMPORTANTE</strong></td><td>Utilize modulação clara e objetiva no código 0</td></tr>
+                    </tbody>
+                </table>
+            </thead>
+            </div>
+            <div class="codes-table">
+    <div class="table-header">Códigos Q</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Significado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>CAP</td><td>Na escuta / Pronto para receber mensagem</td></tr>
+            <tr><td>QTH</td><td>Localização atual</td></tr>
+            <tr><td>QRA</td><td>Nome ou identificação</td></tr>
+            <tr><td>QSL</td><td>Entendido / Afirmativo</td></tr>
+            <tr><td>QSM</td><td>Repetir a última mensagem</td></tr>
+            <tr><td>QSO</td><td>Comunicação / Aviso</td></tr>
+            <tr><td>QTI</td><td>Indo em direção ao local</td></tr>
+            <tr><td>QRR</td><td>Reforço / Apoio imediato</td></tr>
+            <tr><td>QTU</td><td>Ocupado no momento</td></tr>
+            <tr style="background: rgba(220, 38, 38, 0.15);"><td><strong>DICA IMPORTANTE</strong></td><td>Sempre que for modular na rádio, certifique-se que não irá interromper ninguém.</td></tr>
+        </tbody>
+    </table>
+</div>
+        </div>
+
+        <div id="acompanhamento-content" class="course-content" style="display: none;">
+            <h3>👁️ Curso de Acompanhamento</h3>
+            <div class="specialization-info">
+                <div class="spec-logo">
+                    <div style="color: white; font-size: 1.5rem;">👁️</div>
+                </div>
+                <div class="spec-content">
+                    <h3 class="spec-title">Técnicas de Acompanhamento Tático</h3>
+                    <p class="spec-description">
+                        O curso de acompanhamento aborda métodos avançados de vigilância e monitoramento de alvos suspeitos. 
+                        Os agentes aprendem técnicas de seguimento discreto, uso de equipamentos de vigilância eletrônica, 
+                        protocolos de comunicação durante operações de acompanhamento e procedimentos de segurança para 
+                        manter a integridade da operação.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="abordagem-content" class="course-content" style="display: none;">
+            <h3>🛡️ Curso de Abordagem</h3>
+            <div class="codes-table">
+                <div class="table-header">TABELA DE PROCEDIMENTOS EM ABORDAGEM</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>PROCEDIMENTOS</th>
+                            <th>DESCRIÇÃO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>ABORDAGEM DE CÓDIGO 1</td><td>Abordagens de código 1 são abordagens de rotina, então não precisa realizar a revista</td></tr>
+                        <tr><td>ABORDAGEM DE CÓDIGO 2</td><td>Abordagens de código 2 são abordagens são abordagens de médio risco, ou seja, o policial pode realizar a revista e a checagem dos documentos</td></tr>
+                        <tr><td>ABORDAGEM DE CÓDIGO 3</td><td>Abordagens de código 3 são abordagens de alto risco, então caso o indivíduo esteja "forçando" ou esteja com atividade suspeita, é uma abordagem de código 3.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+        <section id="normas" class="section">
+            <h2 class="section-title">NORMAS INTERNAS</h2>
+            <div class="specialization-info">
+                <div class="spec-logo">
+                    <div style="color: white; font-size: 1.5rem;">📋</div>
+                </div>
+                <div class="spec-content">
+                    <h3 class="spec-title">Regulamentações e Procedimentos</h3>
+                    <p class="spec-description">
+                        As normas internas da Polícia Federal estabelecem os procedimentos operacionais, 
+                        código de conduta, hierarquia e protocolos de segurança que devem ser seguidos 
+                        por todos os agentes. Estas normas garantem a eficiência, transparência e 
+                        legalidade das operações realizadas pela instituição.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section id="recrutamento" class="section">
+    <h2 class="section-title">Recrutamento</h2>
+    <div class="specialization-info">
+        <div class="spec-logo">
+            <div style="color: white; font-size: 1.5rem;">👤</div>
+        </div>
+        <div class="spec-content">
+            <h3 class="spec-title">Processo de Recrutamento</h3>
+            <p class="spec-description">
+                O processo de recrutamento da Polícia Federal é rigoroso e transparente, 
+                visando selecionar os melhores candidatos para integrar nossa corporação. 
+                Oferecemos oportunidades de carreira para profissionais qualificados e 
+                comprometidos com a justiça e segurança pública.
+            </p>
+        </div>
+    </div>
+</section>
+<section id="corregedoria" class="section">
+    <h2 class="section-title">CORREGEDORIA</h2>
+    
+    <div class="specialization-info">
+        <div class="spec-logo">
+            <div style="color: white; font-size: 1.5rem;">⚖️</div>
+        </div>
+        <div class="spec-content">
+            <h3 class="spec-title">Central de Atendimento - Corregedoria</h3>
+            <p class="spec-description">
+                A Corregedoria da Polícia Federal é responsável pelo controle interno da corporação, 
+                investigando irregularidades, apurando denúncias e garantindo que todos os procedimentos 
+                sejam executados dentro dos padrões éticos e legais estabelecidos. Aqui você pode abrir 
+                tickets para denúncias, solicitações ou esclarecimentos.
+            </p>
+        </div>
+    </div>
+
+<div class="ticket-options">
+    <div class="ticket-card">
+        <h4>🚨 Denúncia</h4>
+        <p>Reportar irregularidades ou má conduta de agentes</p>
+        <button class="nav-item" style="margin-top: 16px; width: 100%;" onclick="openDiscordTicket('denuncia')">
+            💬 Abrir no Discord
+        </button>
+    </div>
+    
+    <div class="ticket-card">
+        <h4>📋 Solicitação</h4>
+        <p>Solicitar documentos, certidões ou informações</p>
+        <button class="nav-item" style="margin-top: 16px; width: 100%;" onclick="openDiscordTicket('solicitacao')">
+            💬 Abrir no Discord
+        </button>
+    </div>
+    
+    <div class="ticket-card">
+        <h4>❓Esclarecimento</h4>
+        <p>Tirar dúvidas sobre procedimentos e normas</p>
+        <button class="nav-item" style="margin-top: 16px; width: 100%;" onclick="openDiscordTicket('esclarecimento')">
+            💬 Abrir no Discord
+        </button>
+    </div>
+    
+    <div class="ticket-card">
+        <h4>⚖️ Recurso</h4>
+        <p>Contestar decisões ou solicitar revisão de processos</p>
+        <button class="nav-item" style="margin-top: 16px; width: 100%;" onclick="openDiscordTicket('recurso')">
+            💬 Abrir no Discord
+        </button>
+    </div>
+</div>
+        
+        <div class="discord-info">
+                    <h4>💬 Atendimento via Discord</h4>
+                    <p>Todos os tickets são direcionados para nosso servidor do Discord para atendimento em tempo real.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+        </section>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+            section.classList.remove('active');
+        });
+        
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+            targetSection.classList.add('active');
+        }
+
+        const courseDetails = document.getElementById('course-details');
+        if (courseDetails) {
+            courseDetails.style.display = 'none';
+        }
+        
+        const activeTab = document.querySelector('.course-tab.active');
+        if (activeTab && sectionId === 'cursos') {
+            activeTab.style.display = 'block';
+        }
+        
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    function showCourseTab(tabId) {
+        const tabs = document.querySelectorAll('.course-tab');
+        tabs.forEach(tab => {
+            tab.classList.remove('active');
+        });
+        
+        const buttons = document.querySelectorAll('.tab-button');
+        buttons.forEach(button => {
+            button.classList.remove('active');
+        });
+        
+        const targetTab = document.getElementById(tabId);
+        if (targetTab) {
+            targetTab.classList.add('active');
+        }
+        
+        event.target.classList.add('active');
+        
+        const courseDetails = document.getElementById('course-details');
+        if (courseDetails) {
+            courseDetails.style.display = 'none';
+        }
+    }
+
+    function showCourseContent(courseType) {
+        const courseTab = document.querySelector('.course-tab.active');
+        if (courseTab) {
+            courseTab.style.display = 'none';
+        }
+        
+        const courseDetails = document.getElementById('course-details');
+        if (courseDetails) {
+            courseDetails.style.display = 'block';
+        }
+
+        const courseContents = document.querySelectorAll('.course-content');
+        courseContents.forEach(content => {
+            content.style.display = 'none';
+        });
+        
+        const targetContent = document.getElementById(courseType + '-content');
+        if (targetContent) {
+            targetContent.style.display = 'block';
+        }
+        
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    function hideCourseContent() {
+        const courseDetails = document.getElementById('course-details');
+        if (courseDetails) {
+            courseDetails.style.display = 'none';
+        }
+        
+        const activeTab = document.querySelector('.course-tab.active');
+        if (activeTab) {
+            activeTab.style.display = 'block';
+        }
+        
+        // Scroll para o topo
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    function openDiscordTicket(ticketType) {
+        const serverId = "1278528584557920369";
+        const channelId = "1385096060762066986";
+        
+        const ticketMessages = {
+            'denuncia': 'Gostaria de fazer uma denúncia através da Corregedoria',
+            'solicitacao': 'Preciso fazer uma solicitação através da Corregedoria', 
+            'esclarecimento': 'Tenho dúvidas que precisam de esclarecimento',
+            'recurso': 'Gostaria de abrir um recurso através da Corregedoria'
+        };
+            
+        const message = ticketMessages[ticketType] || 'Abrir ticket na Corregedoria';
+        
+        const discordUrl = `https://discord.com/channels/${serverId}/${channelId}`;
+        
+        window.open(discordUrl, '_blank');
+        
+        setTimeout(() => {
+            alert(`INSTRUÇÕES IMPORTANTES:\n\n` +
+                  `1. Você foi redirecionado para o Discord\n` +
+                  `2. Se não abriu automaticamente, copie este link:\n` +
+                  `${discordUrl}\n\n` +
+                  `3. Cole no seu navegador\n` +
+                  `4. Faça login no Discord se necessário\n` +
+                  `5. Digite: ${message}\n` +
+                  `6. Aguarde atendimento\n\n` +
+                  `Tipo: ${ticketType.toUpperCase()}`);
+        }, 500);
+    }
+
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const pattern = document.querySelector('.background-pattern');
+        if (pattern) {
+            pattern.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        showSection('home');
+    });
+</script>
