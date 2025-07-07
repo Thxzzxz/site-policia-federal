@@ -754,6 +754,92 @@
     font-size: 0.95rem;
     line-height: 1.5;
 }
+/* ==================== LOCALIZAÇÃO 1: CSS ====================
+   PROCURE POR ESTA LINHA NO SEU CÓDIGO (linha aproximada 413): */
+
+.discord-info p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* ADICIONE TODO O CSS ABAIXO, LOGO APÓS A LINHA ACIMA: */
+
+/* Botão Discord */
+.discord-button {
+    background: linear-gradient(135deg, #5865F2, #4752C4);
+    border: 2px solid rgba(88, 101, 242, 0.3);
+    border-radius: 16px;
+    padding: 16px 32px;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 20px rgba(88, 101, 242, 0.3);
+    position: relative;
+    overflow: hidden;
+    margin: 24px auto;
+    text-align: center;
+    justify-content: center;
+    min-width: 200px;
+}
+
+.discord-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.discord-button:hover::before {
+    left: 100%;
+}
+
+.discord-button:hover {
+    background: linear-gradient(135deg, #4752C4, #3C45A5);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(88, 101, 242, 0.4);
+    border-color: rgba(88, 101, 242, 0.5);
+}
+
+.discord-button:active {
+    transform: translateY(-1px);
+}
+
+.discord-icon {
+    font-size: 1.3rem;
+}
+
+.discord-button-container {
+    text-align: center;
+    margin: 40px 0;
+}
+
+@media (max-width: 768px) {
+    .discord-button {
+        padding: 14px 24px;
+        font-size: 1rem;
+        min-width: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .discord-button {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+        min-width: 160px;
+    }
+}
     </style>
 </head>
 <body>
@@ -794,6 +880,16 @@
                     com excelência e imparcialidade. Seu trabalho tem sido amplamente reconhecido e admirado por muitos na cidade 
                     Comando RJ.
                 </p>
+
+                <div class="discord-button-container">
+                    <a href="#" class="discord-button" onclick="redirectToDiscord()">
+                        <span class="discord-icon">💬</span>
+                        Entrar no Discord
+                    </a>
+                </div>
+
+            </div>
+        </section>
             </div>
         </section>
 
@@ -1213,4 +1309,24 @@
     document.addEventListener('DOMContentLoaded', () => {
         showSection('home');
     });
+
+    function redirectToDiscord() {
+        const serverId = "1278528584557920369";
+        const channelId = "1352485521166831637";
+        
+        const discordUrl = `https://discord.com/channels/${serverId}/${channelId}`;
+        
+        window.open(discordUrl, '_blank');
+        
+        setTimeout(() => {
+            alert(`INSTRUÇÕES:\n\n` +
+                  `1. Você foi redirecionado para o Discord\n` +
+                  `2. Se não abriu automaticamente, copie este link:\n` +
+                  `${discordUrl}\n\n` +
+                  `3. Cole no seu navegador\n` +
+                  `4. Faça login no Discord se necessário\n` +
+                  `5. Você será direcionado para o canal correto`);
+        }, 500);
+    }
+
 </script>
