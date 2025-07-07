@@ -66,7 +66,7 @@
         }
 
         .header-content {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
         }
@@ -191,7 +191,7 @@
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 320px 24px 60px;
         }
@@ -217,30 +217,30 @@
             }
         }
 
-.section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 48px;
-    padding-top: 20px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    position: relative;
-    color: var(--primary-red);
-    line-height: 3; 
-}
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 48px;
+            padding-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            color: var(--primary-red);
+            line-height: 1.2;
+        }
 
-.section-title::after {
-    content: "";
-    position: absolute;
-    bottom: -16px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 120px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary-red), var(--accent-gold));
-    border-radius: 2px;
-}
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-red), var(--accent-gold));
+            border-radius: 2px;
+        }
 
         .welcome-section {
             text-align: center;
@@ -274,13 +274,14 @@
             border: 1px solid var(--border-color);
             border-radius: 20px;
             padding: 40px;
-            margin: 48px 0;
+            margin: 48px auto;
             backdrop-filter: blur(20px);
             display: flex;
             align-items: flex-start;
             gap: 32px;
             box-shadow: var(--shadow-primary);
             transition: all 0.3s ease;
+            max-width: 1500px
         }
 
         .specialization-info:hover {
@@ -323,57 +324,66 @@
         .codes-table {
             background: linear-gradient(135deg, var(--bg-card), rgba(220, 38, 38, 0.03));
             border: 1px solid var(--border-color);
-            border-radius: 16px;
+            border-radius: 12px;
             overflow: hidden;
             backdrop-filter: blur(20px);
-            margin-bottom: 40px;
+            margin-bottom: 24px;
             box-shadow: var(--shadow-primary);
+            max-width: 1500px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .table-header {
             background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
-            padding: 24px;
+            padding: 16px;
             text-align: center;
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            letter-spacing: 1px;
+            letter-spacing: 0.8px;
             text-transform: uppercase;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
+            font-size: 0.9rem;
         }
 
         th, td {
-            padding: 16px 20px;
+            padding: 10px 12px;
             text-align: left;
-            border-bottom: 1px solid rgba(220, 38, 38, 0.1);
-            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(220, 38, 38, 0.08);
+            font-size: 0.88rem;
+            line-height: 1.4;
         }
 
         th {
-            background: rgba(220, 38, 38, 0.1);
+            background: rgba(220, 38, 38, 0.08);
             font-weight: 600;
             color: var(--primary-red);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
             font-size: 0.85rem;
+            padding: 10px 14px;
         }
 
         tr:hover {
-            background: rgba(220, 38, 38, 0.05);
+            background: rgba(220, 38, 38, 0.04);
         }
 
         .courses-intro {
             text-align: center;
             margin-bottom: 48px;
-            padding: 40px;
+            padding: 32px;
             background: linear-gradient(135deg, var(--bg-card), rgba(220, 38, 38, 0.05));
             border: 1px solid var(--border-color);
-            border-radius: 20px;
+            border-radius: 16px;
             backdrop-filter: blur(20px);
             box-shadow: var(--shadow-primary);
+            max-width: 1600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .courses-intro h3 {
@@ -432,16 +442,19 @@
 
         .course-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
             margin-top: 40px;
+            max-width: 1600px; /* NOVA LINHA - limita largura do grid */
+            margin-left: auto; /* NOVA LINHA - centraliza */
+            margin-right: auto; /* NOVA LINHA - centraliza */
         }
 
         .course-card {
             background: linear-gradient(135deg, var(--bg-card), rgba(220, 38, 38, 0.05));
             border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 32px;
+            border-radius: 14px;
+            padding: 28px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -469,28 +482,28 @@
 
         .course-card:hover {
             background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(185, 28, 28, 0.08));
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
         }
 
         .course-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            margin-bottom: 16px;
             display: block;
         }
 
         .course-card h4 {
             color: var(--primary-red);
-            font-size: 1.4rem;
-            margin-bottom: 12px;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
             font-weight: 600;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.4px;
         }
 
         .course-card p {
             color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.6;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         .course-detail-content {
@@ -530,22 +543,208 @@
         }
 
         .course-content h3 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--primary-red);
-            margin-bottom: 32px;
+            margin-bottom: 28px;
             font-weight: 600;
             text-align: center;
         }
+
+        .ticket-system {
+            margin-top: 40px;
+        }
+
+        .ticket-header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding: 32px;
+            background: linear-gradient(135deg, var(--bg-card), rgba(220, 38, 38, 0.05));
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-primary);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .ticket-header h3 {
+            font-size: 1.75rem;
+            color: var(--primary-red);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .ticket-header p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .ticket-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-bottom: 32px;
+            max-width: 1500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .ticket-card {
+            background: linear-gradient(135deg, var(--bg-card), rgba(220, 38, 38, 0.05));
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 28px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ticket-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-red), var(--accent-gold));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .ticket-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .ticket-card:hover {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(185, 28, 28, 0.08));
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .ticket-card h4 {
+            color: var(--primary-red);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+        }
+
+        .ticket-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .discord-info {
+            background: linear-gradient(135deg, var(--bg-card), rgba(245, 158, 11, 0.05));
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-primary);
+            max-width: 1500px; 
+            margin: 0 auto;
+        }
+
+        .discord-info h4 {
+            color: var(--accent-gold);
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .discord-info p {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.4;
+        }
+
+        .discord-button {
+            background: linear-gradient(135deg, #5865F2, #4752C4);
+            border: 2px solid rgba(88, 101, 242, 0.3);
+            border-radius: 14px;
+            padding: 14px 28px;
+            color: white;
+            font-weight: 600;
+            font-size: 1.05rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 6px 16px rgba(88, 101, 242, 0.3);
+            position: relative;
+            overflow: hidden;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .discord-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .discord-button:hover::before {
+            left: 100%;
+        }
+
+        .discord-button:hover {
+            background: linear-gradient(135deg, #4752C4, #3C45A5);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(88, 101, 242, 0.4);
+            border-color: rgba(88, 101, 242, 0.5);
+        }
+
+        .discord-button:active {
+            transform: translateY(0);
+        }
+
+        .discord-icon {
+            font-size: 1.2rem;
+        }
+
+        .discord-button-container {
+            text-align: center;
+            margin: 32px 0;
+        }
+
         @media (max-width: 1024px) {
             .container {
                 padding: 300px 20px 50px;
+                max-width: 100%;
             }
             
             .specialization-info {
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
-                padding: 32px;
+                padding: 28px;
+                max-width: 100%;
+            }
+            
+            .codes-table {
+                margin-bottom: 20px;
+                max-width: 90%;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+                font-size: 0.85rem;
             }
         }
 
@@ -576,6 +775,7 @@
             
             .course-cards {
                 grid-template-columns: 1fr;
+                max-width: 100%;
             }
             
             .course-tabs {
@@ -593,8 +793,27 @@
             }
             
             th, td {
-                padding: 12px 16px;
+                padding: 14px 18px;
+                text-align: left;
+                border-bottom: 1px solid rgba(220, 38, 38, 0.08);
                 font-size: 0.9rem;
+                line-height: 1.6;
+            }
+            
+            .table-header {
+                padding: 12px;
+                font-size: 1rem;
+            }
+            
+            .ticket-options {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+            }
+            
+            .discord-button {
+                padding: 12px 24px;
+                font-size: 1rem;
+                min-width: 160px;
             }
         }
 
@@ -627,219 +846,24 @@
             
             .specialization-info,
             .courses-intro {
-                padding: 24px;
+                padding: 20px;
+            }
+            
+            th, td {
+                padding: 5px 6px;
+                font-size: 0.8rem;
+            }
+            
+            .course-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .discord-button {
+                padding: 10px 20px;
+                font-size: 0.95rem;
+                min-width: 140px;
             }
         }
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --text-secondary: #e5e7eb;
-                --text-muted: #a1a1aa;
-            }
-        }
-        
-        /* Estilos para o sistema de tickets da corregedoria */
-.ticket-system {
-    margin-top: 40px;
-}
-
-.ticket-header {
-    text-align: center;
-    margin-bottom: 32px;
-    padding: 32px;
-    background: linear-gradient(135deg, var(--bg-card), rgba(220, 38, 38, 0.05));
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    backdrop-filter: blur(20px);
-    box-shadow: var(--shadow-primary);
-}
-
-.ticket-header h3 {
-    font-size: 1.75rem;
-    color: var(--primary-red);
-    margin-bottom: 12px;
-    font-weight: 600;
-}
-
-.ticket-header p {
-    font-size: 1.05rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-}
-
-.ticket-options {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-    margin-bottom: 32px;
-}
-
-.ticket-card {
-    background: linear-gradient(135deg, var(--bg-card), rgba(220, 38, 38, 0.05));
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 32px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(20px);
-    box-shadow: var(--shadow-primary);
-    position: relative;
-    overflow: hidden;
-}
-
-.ticket-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary-red), var(--accent-gold));
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-}
-
-.ticket-card:hover::before {
-    transform: scaleX(1);
-}
-
-.ticket-card:hover {
-    background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(185, 28, 28, 0.08));
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-}
-
-.ticket-card h4 {
-    color: var(--primary-red);
-    font-size: 1.4rem;
-    margin-bottom: 12px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-}
-
-.ticket-card p {
-    color: var(--text-secondary);
-    font-size: 1rem;
-    line-height: 1.6;
-}
-
-.discord-info {
-    background: linear-gradient(135deg, var(--bg-card), rgba(245, 158, 11, 0.05));
-    border: 1px solid rgba(245, 158, 11, 0.2);
-    border-radius: 16px;
-    padding: 24px;
-    text-align: center;
-    backdrop-filter: blur(20px);
-    box-shadow: var(--shadow-primary);
-}
-
-.discord-info h4 {
-    color: var(--accent-gold);
-    font-size: 1.2rem;
-    margin-bottom: 8px;
-    font-weight: 600;
-}
-
-.discord-info p {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    line-height: 1.5;
-}
-/* ==================== LOCALIZAÇÃO 1: CSS ====================
-   PROCURE POR ESTA LINHA NO SEU CÓDIGO (linha aproximada 413): */
-
-.discord-info p {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    line-height: 1.5;
-}
-
-/* ADICIONE TODO O CSS ABAIXO, LOGO APÓS A LINHA ACIMA: */
-
-/* Botão Discord */
-.discord-button {
-    background: linear-gradient(135deg, #5865F2, #4752C4);
-    border: 2px solid rgba(88, 101, 242, 0.3);
-    border-radius: 16px;
-    padding: 16px 32px;
-    color: white;
-    font-weight: 600;
-    font-size: 1.1rem;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 20px rgba(88, 101, 242, 0.3);
-    position: relative;
-    overflow: hidden;
-    margin: 24px auto;
-    text-align: center;
-    justify-content: center;
-    min-width: 200px;
-}
-
-.discord-button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.6s;
-}
-
-.discord-button:hover::before {
-    left: 100%;
-}
-
-.discord-button:hover {
-    background: linear-gradient(135deg, #4752C4, #3C45A5);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(88, 101, 242, 0.4);
-    border-color: rgba(88, 101, 242, 0.5);
-}
-
-.discord-button:active {
-    transform: translateY(-1px);
-}
-
-.discord-icon {
-    font-size: 1.3rem;
-}
-
-.discord-button-container {
-    text-align: center;
-    margin: 40px 0;
-}
-
-@media (max-width: 768px) {
-    .discord-button {
-        padding: 14px 24px;
-        font-size: 1rem;
-        min-width: 180px;
-    }
-}
-
-@media (max-width: 480px) {
-    .discord-button {
-        padding: 12px 20px;
-        font-size: 0.95rem;
-        min-width: 160px;
-    }
-}
     </style>
 </head>
 <body>
